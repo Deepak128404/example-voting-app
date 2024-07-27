@@ -39,12 +39,12 @@ jobs:
       with:
         context: result
         push: true
-        tags: deepak25404/examplevotingapp_result:${{ github.sha }}
+        tags: deepak25404/examplevotingapp_result:${{ github.run_no}}
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'deepak25404/examplevotingapp_result:${{ github.sha }}'
+        image-ref: 'deepak25404/examplevotingapp_result:${{ github.run_no }}'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
