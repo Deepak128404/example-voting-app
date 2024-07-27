@@ -24,6 +24,7 @@ jobs:
     name: Vote Call Docker Build
 
     uses: dockersamples/.github/.github/workflows/reusable-docker-build.yaml@main
+    uses: actions/checkout@v4
 
     permissions:
       contents: read
