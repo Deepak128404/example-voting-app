@@ -69,15 +69,15 @@ jobs:
         tags: deepak25404/examplevotingapp_result:${{ github.run_id }}
 
   Slack-Alert:
-    runs-on: ubuntu-latest
-    if: always()
     needs: [Docker-Build-Scan, Docker-Image-Push]
-
+    if: always()
+    runs-on: ubuntu-latest
     steps:
-      - uses: 8398a7/action-slack@v3
-      - uses: technote-space/workflow-conclusion-action@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+    - uses: technote-space/workflow-conclusion-action@v3
+    - uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ env.WORKFLOW_CONCLUSION }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
