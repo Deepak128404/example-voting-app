@@ -18,7 +18,7 @@ on:
       - '.github/workflows/call-docker-build-result.yaml'
 
 jobs:
-  build-and-deploy:
+  Docker-Build-Deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -39,23 +39,34 @@ jobs:
       with:
         context: result
         push: true
-        tags: deepak25404/examplevotingapp_result:${{ github.run_no}}
+        tags: deepak25404/examplevotingapp_result:${{ github.run_id}}
+  
+  Image-Scanning:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'deepak25404/examplevotingapp_result:${{ github.run_no }}'
+        context: result
+        image-ref: 'deepak25404/examplevotingapp_result:${{ github.run_id }}'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
 
+
+    
     - name: Slack Notification
       uses: 8398a7/action-slack@v3
       with:
-        status: ${{ job.status }}
-        fields: repo,message,commit,author,action,eventName,ref,workflow
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
       if: always()
