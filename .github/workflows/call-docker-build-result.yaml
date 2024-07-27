@@ -50,6 +50,7 @@ jobs:
 
   Docker-Image-Push:
     runs-on: ubuntu-latest
+    needs: Docker-Build-Scan
     
     steps:
     - name: Checkout code
