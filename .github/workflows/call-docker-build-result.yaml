@@ -70,6 +70,7 @@ jobs:
 
   Slack-Alert:
     runs-on: ubuntu-latest
+    if: always()
     needs: [Docker-Build-Scan, Docker-Image-Push]
 
     steps:
@@ -80,4 +81,3 @@ jobs:
           fields: repo,message,commit,author,action,eventName,ref,workflow
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-    if: always()
