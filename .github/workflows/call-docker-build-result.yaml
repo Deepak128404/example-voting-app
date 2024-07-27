@@ -74,8 +74,7 @@ jobs:
     needs: [Docker-Build-Scan, Docker-Image-Push]
 
     steps:
-      - name: Send Slack Notification
-        uses: 8398a7/action-slack@v3
+      - uses: 8398a7/action-slack@v3
       - uses: technote-space/workflow-conclusion-action@v3
         with:
           status: ${{ job.status }}
