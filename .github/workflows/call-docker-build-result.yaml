@@ -69,10 +69,6 @@ jobs:
         tags: deepak25404/examplevotingapp_result:${{ github.run_id }}
 
     
-  Slack-Notification:
-    runs-on: ubuntu-latest
-    needs: Docker-Image-Push
-    steps:
     - name: Slack Notification
       uses: 8398a7/action-slack@v3
       with:
