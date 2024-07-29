@@ -28,7 +28,7 @@ jobs:
     - name: Build Docker image
       uses: docker/build-push-action@v4
       with:
-        context: result
+        context: vote
         push: false
         load: true
         tags: deepak25404/examplevotingapp_vote:${{ github.run_id}}
@@ -43,7 +43,7 @@ jobs:
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: 'os,library'
-        severity: 'CRITICAL'
+        severity: 'CRITICAL, HIGH'
 
   Docker-Image-Push:
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
     - name: Push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: result
+        context: vote
         push: true
         tags: deepak25404/examplevotingapp_vote:${{ github.run_id }}
 
