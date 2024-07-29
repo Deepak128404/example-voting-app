@@ -46,7 +46,7 @@ jobs:
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: 'os,library'
-        severity: 'CRITICAL'
+        severity: 'CRITICAL, HIGH'
 
   Docker-Image-Push:
     runs-on: ubuntu-latest
