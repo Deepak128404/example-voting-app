@@ -38,7 +38,7 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         context: vote
-        image-ref: 'deepak25404/examplevotingapp_votet:${{ github.run_id }}'
+        image-ref: 'deepak25404/examplevotingapp_vote:${{ github.run_id }}'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
