@@ -7,11 +7,11 @@ voting:
 result:
   image:
     repository: deepak25404/examplevotingapp_result
-    tag: "10144219837"
+    result_tag: "10144219837"
   replicaCount: 1
 
 worker:
   image:
     repository: deepak25404/examplevotingapp_worker
-    tag: "10141150784"
+    worker_tag: "10141150784"
   replicaCount: 1
