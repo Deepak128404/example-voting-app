@@ -1,7 +1,7 @@
 voting:
   image:
     repository: deepak25404/examplevotingapp_vote
-    tag: "10165868770"
+    voting_tag: "10165868770"
   replicaCount: 1
 
 result:
