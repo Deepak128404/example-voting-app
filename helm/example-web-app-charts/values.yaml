@@ -13,5 +13,5 @@ result:
 worker:
   image:
     repository: deepak25404/examplevotingapp_worker
-    worker_tag: "10141150784"
+    worker_tag: "10166148191"
   replicaCount: 1
