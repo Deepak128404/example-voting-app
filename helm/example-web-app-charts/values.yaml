@@ -7,7 +7,7 @@ voting:
 result:
   image:
     repository: deepak25404/examplevotingapp_result
-    result_tag: "10144219837"
+    result_tag: "10166109308"
   replicaCount: 1
 
 worker:
