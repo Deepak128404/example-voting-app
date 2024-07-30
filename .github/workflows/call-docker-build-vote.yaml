@@ -75,7 +75,7 @@ jobs:
         token: ${{ secrets.GITHUBTOKEN }}
     - name: Update tag in Helm chart
       run: |
-        sed -i 's/\(voting:\n.*\n.*tag:\).*/\1 "${{github.run_id}}"/' helm/example-web-app-charts/values.yaml
+        sed -i 's/${voting_tag}/"${{github.run_id}}"/' helm/example-web-app-charts/values.yaml
     - name: Commit and push changes
       run: |
         git config --global user.email "jitcse.deepaksingh@gmail.com"
