@@ -85,7 +85,7 @@ jobs:
         git push
 
   Slack-Alert:
-    needs: [Docker-Build-Scan, Docker-Image-Push]
+    needs: [Docker-Build-Scan, Docker-Image-Push, Update-Helm-Chart]
     if: always()
     runs-on: ubuntu-latest
     steps:
