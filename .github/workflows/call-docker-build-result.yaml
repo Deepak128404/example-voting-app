@@ -65,8 +65,28 @@ jobs:
         push: true
         tags: deepak25404/examplevotingapp_result:${{ github.run_id }}
 
+
+  Update-Helm-Chart:
+    needs: Docker-Image-Push
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+    - name: Update tag in Helm chart
+      run: |
+        sed -i 's/\(result_tag: \).*"/\1"${{github.run_id}}"/' helm/example-web-app-charts/values.yaml
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "jitcse.deepaksingh@gmail.com"
+        git config --global user.name "Deepak Singh Thakur"
+        git add helm/example-web-app-charts/values.yaml
+        git commit -m "Update the new tag in Helm chart with CI"
+        git push
+
   Slack-Alert:
-    needs: [Docker-Build-Scan, Docker-Image-Push]
+    needs: [Docker-Build-Scan, Docker-Image-Push, Update-Helm-Chart]
     if: always()
     runs-on: ubuntu-latest
     steps:
