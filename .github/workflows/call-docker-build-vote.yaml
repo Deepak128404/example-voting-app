@@ -80,8 +80,8 @@ jobs:
       run: |
         git config --global user.email "jitcse.deepaksingh@gmail.com"
         git config --global user.name "Deepak Singh Thakur"
-        git add helm/go-web-chart/values.yaml
-        git commit -m "Update the new tag in Helm chart"
+        git add helm/example-web-app-charts/values.yaml
+        git commit -m "Update the new tag in Helm chart with CI"
         git push
 
   Slack-Alert:
