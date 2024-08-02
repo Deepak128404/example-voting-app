@@ -15,7 +15,7 @@ spec:
         app: vote
     spec:
       containers:
-      - image: "{{ .Values.voting.image.repository }}:{{ .Values.voting.image.tag }}"
+      - image: "{{ .Values.voting.image.repository }}:{{ .Values.voting.image.voting_tag }}"
         name: vote
         ports:
         - containerPort: 80
